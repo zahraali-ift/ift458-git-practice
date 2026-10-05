@@ -1,0 +1,233 @@
+
+> ift458-level1-simple-db-auth@1.0.0 start
+> node server.js
+
+
+▶ Level 1 - Simple DB Authentication, Zero Authorization
+  database:     mongodb+srv://dbuser:***@ift458cluster.zbf4eqg.mongodb.net/LoanDB
+  environment:  development
+  port:         4001
+  api version:  /api/v1
+  bcrypt cost:  12
+  hostname:     Dineshs-MacBook-Pro.local
+  ip addresses: 192.168.0.92 (IPv4, en0), 2600:8800:2497:ad00:f0:7539:ce27:ed29 (IPv6, en0), 2600:8800:2497:ad00:b493:b261:aa03:a35e (IPv6, en0), 2600:8800:2497:ad00::2a44 (IPv6, en0)
+    · link-local addresses omitted: 13
+  node:         v22.19.0 on darwin arm64 (pid 33317)
+    · config files read: .env then config.env (first value wins)
+    · log file: /Users/dxs/Downloads/IFT_Level2-Authentication/logs/app-2026-09-22T02-14-36-176.log
+
+▶ Submission details
+  run id:       8d92a6d8-f694-41b2-96fd-419200c5866b
+  student:      NOT SET
+  student id:   NOT SET
+  log file:     /Users/dxs/Downloads/IFT_Level2-Authentication/logs/app-2026-09-22T02-14-36-176.log
+  ! STUDENT_NAME and STUDENT_ID are not set - this log cannot be graded as it stands.
+  Add them to .env, for example:
+    STUDENT_NAME=Alice Johnson
+    STUDENT_ID=1212345678
+  then restart the app so a fresh log carries your name.
+
+▶ How to run this app, in order
+  1. cd into this folder (2.1-Level-1-Simple-DB-Authentication)
+  2. npm install                      - install dependencies (once)
+  3. cp config.env.example config.env - or let ../0-Atlas-Setup-Automation write it for you
+  4. edit config.env                  - set DATABASE (local MongoDB or Atlas)
+  5. npm run seed                     - load sample users and games
+  6. npm start                        - start the server
+  7. open http://localhost:4001/api-docs - try the API in Swagger UI
+  8. npm test                         - run the tests (in-memory MongoDB, no setup needed)
+
+▶ What to submit
+  1. Exercise every endpoint for Level 1 (the CLO list below says which).
+  2. Stop the server with Ctrl+C - the CLO summary is written on shutdown.
+  3. Submit the newest file in logs/ (logs/app-latest.log is a copy of it).
+  4. A log that shows missing CLOs, or no student name, will be returned unmarked.
+
+▶ Course Learning Outcomes to demonstrate (Level 1)
+  L1-CLO1  Connect an Express API to MongoDB using configuration held outside the code
+    ·       how: Start the app with a working DATABASE in .env: npm start
+  L1-CLO2  Register a user and store the password as a bcrypt hash, never in plain text
+    ·       how: POST /api/v1/users/signup with name, email, password, passwordConfirmation
+  L1-CLO3  Authenticate a user by comparing a supplied password with the stored hash
+    ·       how: POST /api/v1/users/login with a correct email and password
+  L1-CLO4  Reject invalid credentials without revealing which part was wrong
+    ·       how: POST /api/v1/users/login with a deliberately wrong password
+  L1-CLO5  Validate input and report failures with the correct HTTP status code
+    ·       how: POST /api/v1/users/signup twice with the same email (409), or with a 3-character password (400)
+  L1-CLO6  Implement REST CRUD over a MongoDB collection
+    ·       how: Create, list, edit and delete a game: POST, GET, PATCH, DELETE /api/v1/games
+  L1-CLO7  Create and manage score records through the API
+    ·       how: POST /api/v1/scores three times (title, author, playerEmail), then GET /api/v1/scores
+  L1-CLO8  Demonstrate the risk of authentication without authorization
+    ·       how: DELETE a game WITHOUT logging in - it succeeds, and that is the lesson of Level 1
+
+▶ Documentation
+  http://localhost:4001/api-docs   (this app's own API reference)
+  Express routing      https://expressjs.com/en/guide/routing.html
+  Express middleware   https://expressjs.com/en/guide/using-middleware.html
+  Mongoose schemas     https://mongoosejs.com/docs/guide.html
+  Mongoose validation  https://mongoosejs.com/docs/validation.html
+  Mongoose queries     https://mongoosejs.com/docs/queries.html
+  Connection strings   https://www.mongodb.com/docs/manual/reference/connection-string/
+  bcrypt (password hashing) https://github.com/dcodeIO/bcrypt.js#readme
+  OWASP authentication cheat sheet https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html
+  HTTP status codes    https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
+  Node test runner     https://nodejs.org/api/test.html
+MongoDB connection string: mongodb+srv://dbuser:***@ift458cluster.zbf4eqg.mongodb.net/LoanDB
+
+▶ Where this run was started from
+  network origin: 24.255.14.100 - Gilbert, Arizona (AZ), United States - Cox Communications Inc.
+  state/region:   Arizona (AZ)
+  timezone:       America/Phoenix  (machine: America/Phoenix)
+  ✓ DB connection successful
+
+▶ Ready
+  ✓ API:      http://localhost:4001/api/v1
+  ✓ Swagger:  http://localhost:4001/api-docs
+  ✓ On LAN:   http://192.168.0.92:4001/api-docs
+  Stop with Ctrl+C. Every request is logged below and in logs/.
+  → GET /api-docs/  [(no controller)]  from ::1 (localhost)
+  ✓ 200 OK in 2.9ms
+  → GET /api-docs/swagger-ui-init.js  [(no controller)]  from ::1 (localhost)
+  ✓ 200 OK in 0.3ms
+  → GET /api-docs/swagger-ui.css  [(no controller)]  from ::1 (localhost)
+  ✓ 200 OK in 3.4ms
+  → GET /api-docs/swagger-ui-standalone-preset.js  [(no controller)]  from ::1 (localhost)
+  ✓ 200 OK in 3.3ms
+  → GET /api-docs/swagger-ui-bundle.js  [(no controller)]  from ::1 (localhost)
+  ✓ 200 OK in 5.9ms
+  → GET /api-docs/favicon-32x32.png  [(no controller)]  from ::1 (localhost)
+  ✓ 200 OK in 0.8ms
+  → GET /api-docs/  [(no controller)]  from ::1 (localhost)
+  ✓ 200 OK in 0.3ms
+  → GET /api-docs/swagger-ui-init.js  [(no controller)]  from ::1 (localhost)
+  ✓ 200 OK in 0.4ms
+  → GET /api-docs/swagger-ui.css  [(no controller)]  from ::1 (localhost)
+  ✓ 200 OK in 2.6ms
+  → GET /api-docs/swagger-ui-standalone-preset.js  [(no controller)]  from ::1 (localhost)
+  ✓ 200 OK in 2.8ms
+  → GET /api-docs/swagger-ui-bundle.js  [(no controller)]  from ::1 (localhost)
+  ✓ 200 OK in 5.0ms
+  → GET /api-docs/  [(no controller)]  from ::1 (localhost)
+  ✓ 200 OK in 1.0ms
+  → GET /api-docs/swagger-ui-init.js  [(no controller)]  from ::1 (localhost)
+  ✓ 200 OK in 0.6ms
+  → GET /api-docs/swagger-ui.css  [(no controller)]  from ::1 (localhost)
+  ✓ 200 OK in 4.5ms
+  → GET /api-docs/swagger-ui-standalone-preset.js  [(no controller)]  from ::1 (localhost)
+  ✓ 200 OK in 3.8ms
+  → GET /api-docs/swagger-ui-bundle.js  [(no controller)]  from ::1 (localhost)
+  ✓ 200 OK in 7.3ms
+  → GET /api-docs/favicon-32x32.png  [(no controller)]  from ::1 (localhost)
+  ✓ 200 OK in 1.5ms
+  → GET /api-docs/favicon-32x32.png  [(no controller)]  from ::1 (localhost)
+  ✓ 200 OK in 0.9ms
+  → GET /api-docs/favicon-32x32.png  [(no controller)]  from ::1 (localhost)
+  ✓ 200 OK in 0.7ms
+  → GET /favicon.ico  [(no controller)]  from ::1 (localhost)
+  ✗ 404 Not Found in 0.6ms  (GET /favicon.ico)
+    · response said: Cannot find GET /favicon.ico
+  What to check, in order:
+    1. No route or document matched.
+    2. Check the URL against /api-docs, including the /api/v1 prefix.
+    3. For /games/:id, the id must be a 24-character MongoDB ObjectId from GET /games.
+    4. Docs: Express routing      https://expressjs.com/en/guide/routing.html
+    5. Docs: MongoDB ObjectId     https://www.mongodb.com/docs/manual/reference/method/ObjectId/
+  → GET /api-docs/favicon-32x32.png  [(no controller)]  from ::1 (localhost)
+  ✓ 200 OK in 0.7ms
+  → GET /favicon.ico  [(no controller)]  from ::1 (localhost)
+  ✗ 404 Not Found in 0.2ms  (GET /favicon.ico)
+    · response said: Cannot find GET /favicon.ico
+  What to check, in order:
+    1. No route or document matched.
+    2. Check the URL against /api-docs, including the /api/v1 prefix.
+    3. For /games/:id, the id must be a 24-character MongoDB ObjectId from GET /games.
+    4. Docs: Express routing      https://expressjs.com/en/guide/routing.html
+    5. Docs: MongoDB ObjectId     https://www.mongodb.com/docs/manual/reference/method/ObjectId/
+  → GET /api/v1/games  [(no controller)]  from ::1 (localhost)
+  ✗ 401 Unauthorized in 0.4ms  (GET /api/v1/games)
+  What to check, in order:
+    1. The email or password did not match.
+    2. Level 1 gives the SAME message for an unknown email and a wrong password, on purpose.
+    3. Seeded users log in with password12345 (run npm run seed first).
+    4. Remember: Level 1 has no session, so there is no "logged in" state to lose.
+    5. Docs: bcrypt (password hashing) https://github.com/dcodeIO/bcrypt.js#readme
+    6. Docs: OWASP authentication cheat sheet https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html
+  → GET /api-docs/favicon-32x32.png  [(no controller)]  from ::1 (localhost)
+  ✓ 200 OK in 0.5ms
+  → GET /api/v1/games  [(no controller)]  from ::1 (localhost)
+  ✗ 401 Unauthorized in 0.9ms  (GET /api/v1/games)
+  What to check, in order:
+    1. The email or password did not match.
+    2. Level 1 gives the SAME message for an unknown email and a wrong password, on purpose.
+    3. Seeded users log in with password12345 (run npm run seed first).
+    4. Remember: Level 1 has no session, so there is no "logged in" state to lose.
+    5. Docs: bcrypt (password hashing) https://github.com/dcodeIO/bcrypt.js#readme
+    6. Docs: OWASP authentication cheat sheet https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html
+  → GET /favicon.ico  [(no controller)]  from ::1 (localhost)
+  ✗ 404 Not Found in 0.3ms  (GET /favicon.ico)
+    · response said: Cannot find GET /favicon.ico
+  What to check, in order:
+    1. No route or document matched.
+    2. Check the URL against /api-docs, including the /api/v1 prefix.
+    3. For /games/:id, the id must be a 24-character MongoDB ObjectId from GET /games.
+    4. Docs: Express routing      https://expressjs.com/en/guide/routing.html
+    5. Docs: MongoDB ObjectId     https://www.mongodb.com/docs/manual/reference/method/ObjectId/
+  → GET /favicon.ico  [(no controller)]  from ::1 (localhost)
+  ✗ 404 Not Found in 0.3ms  (GET /favicon.ico)
+    · response said: Cannot find GET /favicon.ico
+  What to check, in order:
+    1. No route or document matched.
+    2. Check the URL against /api-docs, including the /api/v1 prefix.
+    3. For /games/:id, the id must be a 24-character MongoDB ObjectId from GET /games.
+    4. Docs: Express routing      https://expressjs.com/en/guide/routing.html
+    5. Docs: MongoDB ObjectId     https://www.mongodb.com/docs/manual/reference/method/ObjectId/
+  → GET /api-docs/favicon-32x32.png  [(no controller)]  from ::1 (localhost)
+  ✓ 200 OK in 0.6ms
+  → GET /api-docs/  [(no controller)]  from ::1 (localhost)
+  ✓ 200 OK in 0.5ms
+  → GET /api-docs/swagger-ui-init.js  [(no controller)]  from ::1 (localhost)
+  ✓ 200 OK in 0.3ms
+  → GET /api-docs/swagger-ui.css  [(no controller)]  from ::1 (localhost)
+  ✓ 200 OK in 2.9ms
+  → GET /api-docs/swagger-ui-standalone-preset.js  [(no controller)]  from ::1 (localhost)
+  ✓ 200 OK in 3.8ms
+  → GET /api-docs/swagger-ui-bundle.js  [(no controller)]  from ::1 (localhost)
+  ✓ 200 OK in 6.2ms
+  → POST /api/v1/users/login  [authController.login]  from ::1 (localhost)
+    · payload {"body":{"email":"alice@ift458.test","password":"***"}}
+  ✓ CLO DEMONSTRATED  L1-CLO3  Authenticate a user by comparing a supplied password with the stored hash
+  ✓ 200 OK in 559.3ms
+  → GET /api-docs/  [(no controller)]  from ::1 (localhost)
+  ✓ 200 OK in 2.1ms
+  → GET /api-docs/swagger-ui-init.js  [(no controller)]  from ::1 (localhost)
+  ✓ 200 OK in 0.2ms
+  → GET /api-docs/swagger-ui.css  [(no controller)]  from ::1 (localhost)
+  ✓ 200 OK in 1.6ms
+  → GET /api-docs/swagger-ui-standalone-preset.js  [(no controller)]  from ::1 (localhost)
+  ✓ 200 OK in 2.0ms
+  → GET /api-docs/swagger-ui-bundle.js  [(no controller)]  from ::1 (localhost)
+  ✓ 200 OK in 3.6ms
+  → GET /api-docs/favicon-32x32.png  [(no controller)]  from ::1 (localhost)
+  ✓ 200 OK in 1.4ms
+  → GET /api-docs/  [(no controller)]  from ::1 (localhost)
+  ✓ 200 OK in 0.7ms
+  → GET /api-docs/swagger-ui.css  [(no controller)]  from ::1 (localhost)
+  ✓ 200 OK in 1.7ms
+  → GET /api-docs/swagger-ui-init.js  [(no controller)]  from ::1 (localhost)
+  ✓ 200 OK in 0.3ms
+  → GET /api-docs/swagger-ui-standalone-preset.js  [(no controller)]  from ::1 (localhost)
+  ✓ 200 OK in 1.9ms
+  → GET /api-docs/swagger-ui-bundle.js  [(no controller)]  from ::1 (localhost)
+  ✓ 200 OK in 5.0ms
+  → GET /api-docs/favicon-32x32.png  [(no controller)]  from ::1 (localhost)
+  ✓ 200 OK in 0.5ms
+  → GET /api/v1/games  [(no controller)]  from ::1 (localhost)
+  ✗ 401 Unauthorized in 0.3ms  (GET /api/v1/games)
+  What to check, in order:
+    1. The email or password did not match.
+    2. Level 1 gives the SAME message for an unknown email and a wrong password, on purpose.
+    3. Seeded users log in with password12345 (run npm run seed first).
+    4. Remember: Level 1 has no session, so there is no "logged in" state to lose.
+    5. Docs: bcrypt (password hashing) https://github.com/dcodeIO/bcrypt.js#readme
+    6. Docs: OWASP authentication cheat sheet https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html
